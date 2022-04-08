@@ -25,10 +25,12 @@ public class Player {
     public Player() {
 
         this.leftLeg = new Rectangle(Main.WINDOW_GAME_SCENE_WEIGHT / 2, Main.WINDOW_HEIGHT - MARGIN_BOTTOM,
-                WEIGHT_LEG, HEIGHT_LEG, new Color(255, 204, 153));
+                WEIGHT_LEG, HEIGHT_LEG, new Color(255, 204, 153, 211)
+        );
 
         this.rightLeg = new Rectangle(Main.WINDOW_GAME_SCENE_WEIGHT / 2 + this.leftLeg.getWidth() + MARGIN_LEG, Main.WINDOW_HEIGHT - MARGIN_BOTTOM,
-                WEIGHT_LEG, HEIGHT_LEG, new Color(255, 204, 153));
+                WEIGHT_LEG, HEIGHT_LEG, new Color(255, 204, 153, 211)
+        );
 
         this.body = new Rectangle(this.leftLeg.getX(),
                 this.rightLeg.getY() - HEIGHT_BODY,
@@ -36,18 +38,11 @@ public class Player {
                 HEIGHT_BODY,
                 Color.CYAN);
 
-        this.neck = new Rectangle(this.body.getX() + NECK_DISTANCE,
+        this.neck = new Rectangle(this.body.getX() + (this.body.getWidth() / 2) - NECK_DISTANCE,
                 this.body.getY() - NECK_HEIGHT,
                 NECK_DISTANCE * 2,
-                NECK_HEIGHT, Color.CYAN);
-//        this.body = new Rectangle(this.leftLeg.getX() ,this.rightLeg.getY()
-//                ,WEIGHT_LEG * 2 + MARGIN_LEG,HEIGHT_BODY, Color.black);
-
-//        this.neck = new Rectangle();
-//
-//                this.rightHand =
-//                        this.leftHand =
-
+                NECK_HEIGHT, new Color(255, 204, 153, 211)
+        );
 
     }
 
@@ -55,12 +50,14 @@ public class Player {
         this.leftLeg.moveRight();
         this.rightLeg.moveRight();
         this.body.moveRight();
+        this.neck.moveRight();
     }
 
     public void moveLeft() {
         this.leftLeg.moveLeft();
         this.rightLeg.moveLeft();
         this.body.moveLeft();
+        this.neck.moveLeft();
     }
 
     public void paint(Graphics graphics) {
