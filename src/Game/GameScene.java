@@ -48,7 +48,6 @@ public class GameScene extends JPanel {
         move.start();
     }
 
-
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         this.tapozitPlayer.paint(graphics);

@@ -78,6 +78,4 @@ public class Player {
     public void setDirection(int direction) {
         this.direction = direction;
     }
-
-
 }
