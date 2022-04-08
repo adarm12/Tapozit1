@@ -48,6 +48,7 @@ public class Player {
 
     }
 
+
     public void moveRight() {
         this.leftLeg.moveRight();
         this.rightLeg.moveRight();
