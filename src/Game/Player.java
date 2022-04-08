@@ -28,7 +28,7 @@ public class Player {
                         WEIGHT_LEG, HEIGHT_LEG, new Color(255,204,153));
 
         this.body = new Rectangle(this.leftLeg.getX() ,this.leftLeg.getY()
-                , WEIGHT_BODY,HEIGHT_BODY, Color.black);
+                , WEIGHT_BODY,this.leftLeg.getY(), Color.black);
 
 //        this.neck = new Rectangle();
 //
