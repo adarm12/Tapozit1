@@ -21,8 +21,9 @@ public class Player {
     public static final int HEIGHT_BODY = 80;
     public static final int NECK_DISTANCE = 10;
     public static final int NECK_HEIGHT = 15;
-    public static final int RIGHT = 3;
-    public static final int LEFT = 1;
+    public static final int RIGHT = 1;
+    public static final int LEFT = 2;
+    public static final int PLAYER_SPEED = 1;
 
     public Player() {
 
