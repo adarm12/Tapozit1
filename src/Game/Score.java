@@ -18,6 +18,7 @@ public class Score {
         this.lives--;
     }
 
+
     public void collectedOranges() {
         this.oranges++;
     }

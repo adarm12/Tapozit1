@@ -15,6 +15,7 @@ public class GameScene extends JPanel {
         Movement movement = new Movement(this.tapozitPlayer);
         this.addKeyListener(movement);
 
+
         this.setLayout(null);
         this.setDoubleBuffered(true);
         this.setBackground(new Color(204, 255, 204));

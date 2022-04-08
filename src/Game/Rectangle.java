@@ -13,6 +13,7 @@ public class Rectangle extends Shape{
     {
         this.setX(this.getX()+1);
     }
+
     public void moveLeft()
     {
         this.setX(this.getX()-1);

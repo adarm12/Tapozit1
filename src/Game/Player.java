@@ -14,6 +14,7 @@ public class Player {
     private Rectangle leftLeg;
     private int direction;
 
+
     public static final int MARGIN_BOTTOM = 130;
     public static final int MARGIN_LEG = 30;
     public static final int WEIGHT_LEG = 15;

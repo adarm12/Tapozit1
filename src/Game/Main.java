@@ -11,8 +11,6 @@ public class Main extends JFrame {
 
     public static final int WINDOW_HEIGHT = 800;
     public static final int WINDOW_WEIGHT = 1500;
-
-
     public static final int WINDOW_GAME_SCENE_WEIGHT = (WINDOW_WEIGHT * 4) / 5;
 
     public Main() {
