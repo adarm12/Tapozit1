@@ -17,6 +17,7 @@ public class GameScene extends JPanel {
         this.tapozitPlayer = new Player();
         this.orange = new Orange();
 
+
 //        Thread move = new Thread(() ->{
 //            while (true)
 //            {

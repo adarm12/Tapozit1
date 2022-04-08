@@ -26,6 +26,7 @@ public class Circle {
         this.color = color;
     }
 
+
     public void Paint(Graphics graphics) {
         graphics.setColor(this.color);
         graphics.fillOval(this.x, this.y, this.width, this.height);

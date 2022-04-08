@@ -58,6 +58,7 @@ public class Player {
         this.rightLeg.moveLeft();
         this.body.moveLeft();
         this.neck.moveLeft();
+
     }
 
     public void paint(Graphics graphics) {
