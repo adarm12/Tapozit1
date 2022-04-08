@@ -12,6 +12,7 @@ public class Player {
     private Rectangle leftHand;
     private Rectangle rightLeg;
     private Rectangle leftLeg;
+    private int direction;
 
     public static final int MARGIN_BOTTOM = 130;
     public static final int MARGIN_LEG = 30;
@@ -20,7 +21,8 @@ public class Player {
     public static final int HEIGHT_BODY = 80;
     public static final int NECK_DISTANCE = 10;
     public static final int NECK_HEIGHT = 15;
-
+    public static final int RIGHT = 3;
+    public static final int LEFT = 1;
 
     public Player() {
 
@@ -67,5 +69,12 @@ public class Player {
         this.neck.paint(graphics);
     }
 
+    public int getDirection() {
+        return direction;
+    }
+
+    public void setDirection(int direction) {
+        this.direction = direction;
+    }
 
 }
