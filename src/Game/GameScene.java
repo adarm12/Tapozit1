@@ -12,7 +12,7 @@ public class GameScene extends JPanel {
         this.setBounds(x, y, weight, height);
         this.setLayout(null);
         this.setDoubleBuffered(true);
-        this.setBackground(Color.LIGHT_GRAY);
+        this.setBackground(new Color(204,255,204));
 
         this.tapozitPlayer = new Player();
         this.orange = new Orange();

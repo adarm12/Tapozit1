@@ -2,7 +2,7 @@ package Game;
 
 import java.awt.*;
 
-public class Orange {
+public class Orange  {
     private Circle orange;
 
 
