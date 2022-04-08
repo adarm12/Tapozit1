@@ -1,20 +1,11 @@
 package Game;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class Player {
 
-    private Rectangle neck;
-    private Rectangle body;
-    private Rectangle belt;
-    private Rectangle rightHand;
-    private Rectangle leftHand;
-    private Rectangle rightLeg;
-    private Rectangle leftLeg;
-    private int direction; // מצביע על הכיוון של השחקן
-
-
-    public static final int MARGIN_BOTTOM = 130;
+    public static final int MARGIN_BOTTOM = 100;
     public static final int MARGIN_LEG = 15;
     public static final int WEIGHT_LEG = 15;
     public static final int HEIGHT_LEG = 40;
@@ -27,6 +18,18 @@ public class Player {
     public static final int PLAYER_SPEED = 1;
     public static final int WEIGHT_HAND = 15;
     public static final int HEIGHT_HAND = 40;
+
+
+    private Rectangle neck;
+    private Rectangle body;
+    private Rectangle belt;
+    private Rectangle rightHand;
+    private Rectangle leftHand;
+    private Rectangle rightLeg;
+    private Rectangle leftLeg;
+    private int direction; // מצביע על הכיוון של השחקן
+    private ImageIcon face;
+
 
     public Player() {
 
@@ -55,6 +58,8 @@ public class Player {
                 NECK_DISTANCE * 2,
                 NECK_HEIGHT, new Color(255, 204, 153, 211));
 
+        this.face = new ImageIcon("face.jpg");
+
         this.rightHand = new Rectangle(this.body.getX() + this.body.getWidth(),
                 this.rightLeg.getY() - HEIGHT_BODY,
                 WEIGHT_HAND,
@@ -66,7 +71,6 @@ public class Player {
                 HEIGHT_HAND,
                 WEIGHT_HAND,
                 new Color(255, 204, 153, 211));
-
     }
 
 
@@ -74,23 +78,25 @@ public class Player {
         this.leftLeg.moveRight();
         this.rightLeg.moveRight();
         this.body.moveRight();
+        this.belt.moveRight();
         this.neck.moveRight();
         this.rightHand.moveRight();
         this.leftHand.moveRight();
-        this.belt.moveRight();
+
     }
 
     public void moveLeft() {
         this.leftLeg.moveLeft();
         this.rightLeg.moveLeft();
         this.body.moveLeft();
+        this.belt.moveLeft();
         this.neck.moveLeft();
         this.rightHand.moveLeft();
         this.leftHand.moveLeft();
-        this.belt.moveLeft();
+
     }
 
-    public void paint(Graphics graphics) {
+    public void paintComponent(Graphics graphics) {
         this.leftLeg.paint(graphics);
         this.rightLeg.paint(graphics);
         this.body.paint(graphics);
@@ -98,6 +104,7 @@ public class Player {
         this.rightHand.paint(graphics);
         this.leftHand.paint(graphics);
         this.belt.paint(graphics);
+       // this.face.paintIcon( GameScene,graphics, this.neck.getX(), this.neck.getY());
 
     }
 

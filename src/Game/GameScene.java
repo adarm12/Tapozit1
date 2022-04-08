@@ -53,11 +53,28 @@ public class GameScene extends JPanel {
         });
         move.start();
     }
+//
+//    Thread fallingOranges = new Thread(() -> {
+//        while (true) {
+//            switch () {
+//
+//            repaint();
+//            try {
+//                Thread.sleep(300);
+//
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    });
+//        move.start();
+//}
+
 
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        this.tapozitPlayer.paint(graphics);
+        this.tapozitPlayer.paintComponent(graphics);
         this.orange.paint(graphics);
-    }
+      }
 }
 
