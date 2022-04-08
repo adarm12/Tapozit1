@@ -16,8 +16,6 @@ public class Movement implements KeyListener {
     }
 
     public void keyPressed(KeyEvent e) {
-        this.player.setDirection(Player.RIGHT);
-        this.player.setDirection(Player.LEFT);
         System.out.println("Key pressed");
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             this.player.moveRight();
