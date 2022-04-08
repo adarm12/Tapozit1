@@ -9,8 +9,8 @@ public class Orange  {
 
     public static final int ORANGE_X = 20;
     public static final int ORANGE_Y = 30;
-    public static final int ORANGE_WEIGHT = 25;
-    public static final int ORANGE_HEIGHT = 25;
+    public static final int ORANGE_WEIGHT = 45;
+    public static final int ORANGE_HEIGHT = 45;
 
     public Orange() {
         this.orange = new Circle(ORANGE_X, ORANGE_Y, ORANGE_WEIGHT, ORANGE_HEIGHT, new Color(255, 154, 0));

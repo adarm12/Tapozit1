@@ -1,8 +1,6 @@
 package Game;
 
-import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
-import java.util.Queue;
 
 public class Player {
 
@@ -12,7 +10,7 @@ public class Player {
     private Rectangle leftHand;
     private Rectangle rightLeg;
     private Rectangle leftLeg;
-    private int direction;
+    private int direction; // מצביע על הכיוון של השחקן
 
 
     public static final int MARGIN_BOTTOM = 130;

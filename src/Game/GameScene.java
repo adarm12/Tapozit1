@@ -38,6 +38,10 @@ public class GameScene extends JPanel {
                         this.tapozitPlayer.moveLeft();
                         break;
                 }
+                // צריך לחשב גבול, שהשחקנית לא תצא מהמסך TODO
+
+
+
                 repaint();
                 try {
                     Thread.sleep(Player.PLAYER_SPEED);
