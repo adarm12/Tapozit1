@@ -2,6 +2,7 @@ package Game;
 
 import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
+import java.util.Queue;
 
 public class Player {
 
@@ -13,22 +14,34 @@ public class Player {
     private Rectangle leftLeg;
 
     public static final int MARGIN_BOTTOM = 130;
-    public static final int MARGIN_LEG = 20;
+    public static final int MARGIN_LEG = 30;
     public static final int WEIGHT_LEG = 15;
-    public static final int HEIGHT_LEG = 70;
-    public static final int WEIGHT_BODY = (2 * WEIGHT_LEG) + MARGIN_LEG;
-    public static final int HEIGHT_BODY = 100;
+    public static final int HEIGHT_LEG = 60;
+    public static final int HEIGHT_BODY = 80;
+    public static final int NECK_DISTANCE = 10;
+    public static final int NECK_HEIGHT = 15;
 
 
     public Player() {
-        this.leftLeg = new Rectangle(Main.WINDOW_GAME_SCENE_WEIGHT / 2 - MARGIN_LEG, Main.WINDOW_HEIGHT - MARGIN_BOTTOM,
-                WEIGHT_LEG, HEIGHT_LEG, new Color(255,204,153));
 
-        this.rightLeg = new Rectangle(Main.WINDOW_GAME_SCENE_WEIGHT/ 2 + MARGIN_LEG,Main.WINDOW_HEIGHT - MARGIN_BOTTOM,
-                        WEIGHT_LEG, HEIGHT_LEG, new Color(255,204,153));
+        this.leftLeg = new Rectangle(Main.WINDOW_GAME_SCENE_WEIGHT / 2, Main.WINDOW_HEIGHT - MARGIN_BOTTOM,
+                WEIGHT_LEG, HEIGHT_LEG, new Color(255, 204, 153));
 
-        this.body = new Rectangle(this.leftLeg.getX() ,this.leftLeg.getY()
-                , WEIGHT_BODY,HEIGHT_BODY, Color.black);
+        this.rightLeg = new Rectangle(Main.WINDOW_GAME_SCENE_WEIGHT / 2 + this.leftLeg.getWidth() + MARGIN_LEG, Main.WINDOW_HEIGHT - MARGIN_BOTTOM,
+                WEIGHT_LEG, HEIGHT_LEG, new Color(255, 204, 153));
+
+        this.body = new Rectangle(this.leftLeg.getX(),
+                this.rightLeg.getY() - HEIGHT_BODY,
+                (2 * WEIGHT_LEG) + MARGIN_LEG,
+                HEIGHT_BODY,
+                Color.CYAN);
+
+        this.neck = new Rectangle(this.body.getX() + NECK_DISTANCE,
+                this.body.getY() - NECK_HEIGHT,
+                NECK_DISTANCE * 2,
+                NECK_HEIGHT, Color.CYAN);
+//        this.body = new Rectangle(this.leftLeg.getX() ,this.rightLeg.getY()
+//                ,WEIGHT_LEG * 2 + MARGIN_LEG,HEIGHT_BODY, Color.black);
 
 //        this.neck = new Rectangle();
 //
@@ -38,23 +51,23 @@ public class Player {
 
     }
 
-    public void moveRight()
-    {
+    public void moveRight() {
         this.leftLeg.moveRight();
         this.rightLeg.moveRight();
         this.body.moveRight();
     }
-    public void moveLeft()
-    {
+
+    public void moveLeft() {
         this.leftLeg.moveLeft();
         this.rightLeg.moveLeft();
         this.body.moveLeft();
     }
-    public void paint (Graphics graphics)
-    {
+
+    public void paint(Graphics graphics) {
         this.leftLeg.paint(graphics);
         this.rightLeg.paint(graphics);
         this.body.paint(graphics);
+        this.neck.paint(graphics);
     }
 
 
