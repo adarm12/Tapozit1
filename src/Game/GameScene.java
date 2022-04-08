@@ -41,6 +41,7 @@ public class GameScene extends JPanel {
                 repaint();
                 try {
                     Thread.sleep(Player.PLAYER_SPEED);
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
