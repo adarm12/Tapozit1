@@ -6,6 +6,7 @@ import java.awt.*;
 public class GameScene extends JPanel {
 
     private Player tapozitPlayer;
+    private Orange orange;
 
     public GameScene(int x, int y, int weight, int height) {
         this.setBounds(x, y, weight, height);
@@ -14,6 +15,7 @@ public class GameScene extends JPanel {
         this.setBackground(Color.LIGHT_GRAY);
 
         this.tapozitPlayer = new Player();
+        this.orange = new Orange();
 
 //        Thread move = new Thread(() ->{
 //            while (true)
@@ -33,5 +35,6 @@ public class GameScene extends JPanel {
     {
         super.paintComponent(graphics);
         this.tapozitPlayer.paint(graphics);
+        this.orange.paint(graphics);
     }
 }

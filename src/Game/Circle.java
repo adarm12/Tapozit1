@@ -31,10 +31,13 @@ public class Circle {
         graphics.fillOval(this.x, this.y, this.width, this.height);
     }
 
-    public  void moveDown()
-    {
+    public void moveDown() {
         this.y++;
     }
 
 
+    public void paint(Graphics graphics) {
+        graphics.setColor(this.color);
+        graphics.fillOval(this.x, this.y, this.width, this.height);
+    }
 }
