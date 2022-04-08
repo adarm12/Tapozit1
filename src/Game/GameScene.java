@@ -46,6 +46,7 @@ public class GameScene extends JPanel {
             }
         });
         move.start();
+
     }
 
 
