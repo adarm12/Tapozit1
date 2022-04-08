@@ -12,7 +12,7 @@ public class Orange  {
     public static final int ORANGE_HEIGHT = 25;
 
     public Orange() {
-        this.orange = new Circle(ORANGE_X, ORANGE_Y, ORANGE_WEIGHT, ORANGE_HEIGHT, Color.ORANGE);
+        this.orange = new Circle(ORANGE_X, ORANGE_Y, ORANGE_WEIGHT, ORANGE_HEIGHT, new Color(255, 154, 0));
 
     }
 
