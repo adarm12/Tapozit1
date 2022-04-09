@@ -2,11 +2,15 @@ package Game;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class GameScene extends JPanel {
+    public static final int FALLING_ORANGES_AMOUNT = 3;
+
 
     private Player tapozitPlayer;
-    private Orange orange;
+    private ArrayList<Orange> orangesList;
 
     public GameScene(int x, int y, int weight, int height) {
         this.setBounds(x, y, weight, height);
@@ -15,6 +19,12 @@ public class GameScene extends JPanel {
         Movement movement = new Movement(this.tapozitPlayer);
         this.addKeyListener(movement);
 
+        this.orangesList = new ArrayList<>();
+        Random random = new Random();
+        for (int i = 0; i < FALLING_ORANGES_AMOUNT; i++) {
+            Orange orange = new Orange(random.nextInt(Main.WINDOW_WEIGHT),0);
+            this.orangesList.add(orange);
+        }
 
         this.setLayout(null);
         this.setDoubleBuffered(true);
@@ -22,7 +32,6 @@ public class GameScene extends JPanel {
         this.setFocusable(true);
         this.requestFocus();
 
-        this.orange = new Orange();
 
     }
 
@@ -53,7 +62,7 @@ public class GameScene extends JPanel {
         });
         move.start();
     }
-//
+
 //    Thread fallingOranges = new Thread(() -> {
 //        while (true) {
 //            switch () {
@@ -63,6 +72,7 @@ public class GameScene extends JPanel {
 //                Thread.sleep(300);
 //
 //            } catch (InterruptedException e) {
+//
 //                e.printStackTrace();
 //            }
 //        }
@@ -74,7 +84,9 @@ public class GameScene extends JPanel {
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         this.tapozitPlayer.paintComponent(graphics);
-        this.orange.paint(graphics);
+        for (Orange orange : orangesList) {
+            orange.paint(graphics);
+        }
       }
 }
 
