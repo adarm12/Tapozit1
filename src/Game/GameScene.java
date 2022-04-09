@@ -10,7 +10,6 @@ public class GameScene extends JPanel {
     public static final int FALLING_ORANGES_SPEED = 50;
 
 
-
     private Player tapozitPlayer;
     private ArrayList<Orange> orangesList;
 
@@ -22,14 +21,8 @@ public class GameScene extends JPanel {
         this.mainGameScene();
 
         this.orangesList = new ArrayList<>();
-        Random random = new Random();
-        for (int i = 0; i <= random.nextInt(FALLING_ORANGES_AMOUNT) + 1; i++) {
-            Orange orange = new Orange(random.nextInt(Main.WINDOW_WEIGHT), 0);
-            this.orangesList.add(orange);
-        }
 
-
-     }
+    }
 
     private void mainGameScene() {
         Thread move = new Thread(() -> {
@@ -64,12 +57,17 @@ public class GameScene extends JPanel {
         });
         move.start();
 
-        Thread fallingOranges = new Thread(() -> { // תהליכון פועל במקביל לפעילות של התוכנית, התהליכון הראשי מתאר לנו אך ורק את המסך, את כל שאר הדברים (חישובים) נוסיף בתהליכונים
+        Thread fallingOranges = new Thread(() -> {
             while (true) {
                 try {
-                    repaint(); // מציירת מחדש את הרכיב
-                    for (Orange orange: this.orangesList) {
-                        orange.moveDown();
+                    repaint();
+                    Random random = new Random();
+                    for (int i = 0; i <= random.nextInt(FALLING_ORANGES_AMOUNT) + 1; i++) {
+                        Orange orange = new Orange(random.nextInt(Main.WINDOW_WEIGHT), 0);
+                        this.orangesList.add(orange);
+                    }
+                    for (Orange oranges : this.orangesList) {
+                        oranges.moveDown();
                     }
                     Thread.sleep(FALLING_ORANGES_SPEED);
                 } catch (InterruptedException e) {
