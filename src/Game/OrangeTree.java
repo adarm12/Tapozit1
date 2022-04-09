@@ -6,7 +6,7 @@ public class OrangeTree {
     public static final int TOP_WIDTH = 150;
     public static final int TOP_HEIGHT = 150;
     public static final int TRUNK_WIDTH = 30;
-    public static final int TRUNK_HEIGHT = 150;
+    public static final int TRUNK_HEIGHT = 130;
     public static final int ORENGE1_X = 20;
     public static final int ORENGE1_Y = 25;
     public static final int ORENGE2_X = 80;
@@ -22,8 +22,8 @@ public class OrangeTree {
     private Orange orange2;
     private Orange orange3;
 
-    public OrangeTree() {
-        this.top = new Circle(900,500,TOP_WIDTH,TOP_HEIGHT,new Color(0, 153, 0));
+    public OrangeTree(int x, int y) {
+        this.top = new Circle(x,y,TOP_WIDTH,TOP_HEIGHT,new Color(0, 153, 0));
         this.trunk = new Rectangle(this.top.getX() + (this.top.getWidth() / 2) - (TRUNK_WIDTH / 2),
                 this.top.getY() + this.top.getHeight(),
                 TRUNK_WIDTH, TRUNK_HEIGHT,

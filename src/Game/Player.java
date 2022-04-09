@@ -17,7 +17,8 @@ public class Player {
     public static final int LEFT = 2;
     public static final int PLAYER_SPEED = 1;
     public static final int WEIGHT_HAND = 15;
-    public static final int HEIGHT_HAND = 40;
+    public static final int HEIGHT_HAND = 60;
+    public static final int BALL_SIZE = 60;
 
 
     private Rectangle neck;
@@ -29,7 +30,7 @@ public class Player {
     private Rectangle leftLeg;
     private int direction; // מצביע על הכיוון של השחקן
     private ImageIcon face;
-
+    private Circle basket;
 
     public Player() {
 
@@ -71,6 +72,8 @@ public class Player {
                 HEIGHT_HAND,
                 WEIGHT_HAND,
                 new Color(255, 204, 153, 211));
+
+        this.basket = new Circle(this.leftHand.getX() - (BALL_SIZE/3) , this.leftHand.getY() , BALL_SIZE, BALL_SIZE, new Color(86, 43,0, 236));
     }
 
 
@@ -100,11 +103,12 @@ public class Player {
         this.leftLeg.paint(graphics);
         this.rightLeg.paint(graphics);
         this.body.paint(graphics);
+        this.belt.paint(graphics);
         this.neck.paint(graphics);
         this.rightHand.paint(graphics);
         this.leftHand.paint(graphics);
-        this.belt.paint(graphics);
-       // this.face.paintIcon( GameScene,graphics, this.neck.getX(), this.neck.getY());
+        this.basket.paint(graphics);
+        // this.face.paintIcon( ,graphics, this.neck.getX(), this.neck.getY());
 
     }
 
@@ -114,5 +118,69 @@ public class Player {
 
     public void setDirection(int direction) {
         this.direction = direction;
+    }
+
+    public Rectangle getNeck() {
+        return neck;
+    }
+
+    public void setNeck(Rectangle neck) {
+        this.neck = neck;
+    }
+
+    public Rectangle getBody() {
+        return body;
+    }
+
+    public void setBody(Rectangle body) {
+        this.body = body;
+    }
+
+    public Rectangle getBelt() {
+        return belt;
+    }
+
+    public void setBelt(Rectangle belt) {
+        this.belt = belt;
+    }
+
+    public Rectangle getRightHand() {
+        return rightHand;
+    }
+
+    public void setRightHand(Rectangle rightHand) {
+        this.rightHand = rightHand;
+    }
+
+    public Rectangle getLeftHand() {
+        return leftHand;
+    }
+
+    public void setLeftHand(Rectangle leftHand) {
+        this.leftHand = leftHand;
+    }
+
+    public Rectangle getRightLeg() {
+        return rightLeg;
+    }
+
+    public void setRightLeg(Rectangle rightLeg) {
+        this.rightLeg = rightLeg;
+    }
+
+    public Rectangle getLeftLeg() {
+        return leftLeg;
+    }
+
+    public void setLeftLeg(Rectangle leftLeg) {
+        this.leftLeg = leftLeg;
+    }
+
+    public ImageIcon getFace() {
+        return face;
+    }
+
+    public void setFace(ImageIcon face) {
+        this.face = face;
     }
 }
