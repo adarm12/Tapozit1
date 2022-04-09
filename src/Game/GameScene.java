@@ -1,5 +1,7 @@
 package Game;
 
+import sun.reflect.generics.tree.Tree;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -7,10 +9,11 @@ import java.util.Random;
 
 public class GameScene extends JPanel {
     public static final int FALLING_ORANGES_AMOUNT = 2;
-    public static final int FALLING_ORANGES_SPEED = 100;
+    public static final int FALLING_ORANGES_SPEED = 50;
 
 
     private Player tapozitPlayer;
+    private OrangeTree trees;
     private ArrayList<Orange> orangesList;
 
     public GameScene(int x, int y, int weight, int height) {
@@ -20,9 +23,12 @@ public class GameScene extends JPanel {
         this.tapozitPlayer = new Player();
         this.mainGameScene();
 
+        this.trees = new OrangeTree();
+
         this.orangesList = new ArrayList<>();
 
-    }
+        }
+
 
     private void mainGameScene() {
         Thread move = new Thread(() -> {
@@ -81,9 +87,11 @@ public class GameScene extends JPanel {
         fallingOranges.start();
     }
 
+
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         this.tapozitPlayer.paintComponent(graphics);
+        this.trees.paintComponent(graphics);
         for (Orange orange : orangesList) {
             orange.paint(graphics);
         }
