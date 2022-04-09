@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class GameScene extends JPanel {
     public static final int FALLING_ORANGES_AMOUNT = 2;
-    public static final int FALLING_ORANGES_SPEED = 50;
+    public static final int FALLING_ORANGES_SPEED = 100;
 
 
     private Player tapozitPlayer;
@@ -58,19 +58,20 @@ public class GameScene extends JPanel {
         move.start();
 
         Thread fallingOranges = new Thread(() -> {
-           Random random = new Random();
+            Random random = new Random();
 //            for (int i = 0; i <= 32; i++) {
-//                Orange orange = new Orange(random.nextInt(Main.WINDOW_WEIGHT), 0);
-//                this.orangesList.add(orange);
+
             while (true) {
+
                 try {
                     repaint();
                     Orange orange = new Orange(random.nextInt(Main.WINDOW_WEIGHT), 0);
-                    orange.moveDown();
-//                    for (Orange oranges : this.orangesList) {
-//                        orange.moveDown();
-                    Thread.sleep(FALLING_ORANGES_SPEED);
+                    this.orangesList.add(orange);
 
+                    for (Orange oranges : this.orangesList) {
+                        Thread.sleep(FALLING_ORANGES_SPEED);
+                        oranges.moveDown();
+                    }
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
