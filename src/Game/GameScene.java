@@ -58,18 +58,20 @@ public class GameScene extends JPanel {
         move.start();
 
         Thread fallingOranges = new Thread(() -> {
+           Random random = new Random();
+//            for (int i = 0; i <= 32; i++) {
+//                Orange orange = new Orange(random.nextInt(Main.WINDOW_WEIGHT), 0);
+//                this.orangesList.add(orange);
             while (true) {
                 try {
                     repaint();
-                    Random random = new Random();
-                    for (int i = 0; i <= random.nextInt(FALLING_ORANGES_AMOUNT) + 1; i++) {
-                        Orange orange = new Orange(random.nextInt(Main.WINDOW_WEIGHT), 0);
-                        this.orangesList.add(orange);
-                    }
-                    for (Orange oranges : this.orangesList) {
-                        oranges.moveDown();
-                    }
+                    Orange orange = new Orange(random.nextInt(Main.WINDOW_WEIGHT), 0);
+                    orange.moveDown();
+//                    for (Orange oranges : this.orangesList) {
+//                        orange.moveDown();
                     Thread.sleep(FALLING_ORANGES_SPEED);
+
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
