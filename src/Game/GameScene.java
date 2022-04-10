@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class GameScene extends JPanel {
     public static final int FALLING_ORANGES_AMOUNT = 2;
-    public static final int FALLING_ORANGES_SPEED = 50;
+    public static final int FALLING_ORANGES_SPEED = 1;
 
 
     private Player tapozitPlayer;
@@ -48,36 +48,8 @@ public class GameScene extends JPanel {
                 if (this.tapozitPlayer.getRightHand().getX() + this.tapozitPlayer.getRightHand().getWidth() == Main.WINDOW_GAME_SCENE_WEIGHT)
                     this.tapozitPlayer.moveLeft();
 
-
                 else if (this.tapozitPlayer.getLeftHand().getX() == 0)
                     this.tapozitPlayer.moveRight();
-//
-//                if (this.player.getLocation() == this.stadium.getBoundX() + this.stadium.getBoundWidth() - this.player.getBodyWidth()) {
-//                    this.player.moveLeft();
-//                } else if (this.player.getLocation() == this.stadium.getBoundX()) {
-//                    this.player.moveRight();
-//                }
-//                if (!shoot) {
-//                    this.ball.dribble(this.player.legsX(), this.player.legsY());
-//                }
-//                if (this.ball.getDirection() == Ball.UP) {
-//                    shoot = true;
-//                    this.ball.goUp();
-//                }
-//                if (this.ball.getYLocation() == this.stadium.getBoundY() - 5) {
-//                    shoot = false;
-//                    this.ball.setDirection(Ball.NONE);
-//                }
-//                if (this.ball.getYLocation() == this.stadium.getBoundY() && (this.ball.getXLocation() > this.stadium.getGoalX() && this.ball.getXLocation() < this.stadium.getGoalX() + this.stadium.getGoalWidth())) {
-//                    System.out.println("goal");
-//                }else if (this.ball.getYLocation()==this.stadium.getBoundY()&&(this.ball.getXLocation()<this.stadium.getGoalX()||this.ball.getXLocation()>this.stadium.getGoalX()+this.stadium.getGoalWidth())){
-//                    System.out.println("Missed");
-//                }
-//
-
-
-                // צריך לחשב גבול, שהשחקנית לא תצא מהמסך TODO
-
 
                 repaint();
                 try {
@@ -94,7 +66,7 @@ public class GameScene extends JPanel {
             Random random = new Random();
 
             while (true) {
-                repaint();
+
 //                this.requestFocus(true);
 //                this.setFocusable(true);
                 Orange orange = new Orange(random.nextInt(Main.WINDOW_WEIGHT), 0);
@@ -104,6 +76,7 @@ public class GameScene extends JPanel {
                 for (Orange oranges : this.orangesList) {
                     oranges.moveDown();
                 }
+                repaint();
                 try {
                     Thread.sleep(FALLING_ORANGES_SPEED);
                 } catch (InterruptedException e) {
