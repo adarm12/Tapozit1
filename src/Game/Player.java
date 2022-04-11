@@ -76,7 +76,6 @@ public class Player {
                 WEIGHT_HAND,
                 new Color(255, 204, 153, 211));
         this.basket = new ImageIcon("basket.jpeg");
-        this.sky = new Rectangle(0,0,1500,150,new Color(88, 236, 236, 255));
     }
 
 
@@ -108,18 +107,16 @@ public class Player {
         this.neck.paint(graphics);
         graphics.drawImage(face.getImage(),
                 this.body.getX() - this.rightHand.getWidth(),
-                this.neck.getY() - (this.neck.getHeight() * 4) ,
-                this.body.getWidth() +(2 * this.rightHand.getWidth()),
-                HEIGHT_FACE,null);
+                this.neck.getY() - (this.neck.getHeight() * 4),
+                this.body.getWidth() + (2 * this.rightHand.getWidth()),
+                HEIGHT_FACE, null);
         this.rightHand.paint(graphics);
         this.leftHand.paint(graphics);
-        graphics.drawImage(basket.getImage(),this.leftHand.getX() - (WEIGHT_BASKET / 2),
+        graphics.drawImage(basket.getImage(), this.leftHand.getX() - (WEIGHT_BASKET / 2),
                 this.leftHand.getY() + this.leftHand.getHeight(),
                 WEIGHT_BASKET,
                 HEIGHT_BASKET,
                 null);
-        this.sky.paint(graphics);
-
     }
 
     public int getDirection() {

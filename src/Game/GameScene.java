@@ -21,6 +21,9 @@ public class GameScene extends JPanel {
         this.trees = new OrangeTree(10, 450);
         this.orangesList = new ArrayList<>();
 
+
+        Rectangle sky = new Rectangle(0, 0, Main.WINDOW_GAME_SCENE_WEIGHT, (Main.WINDOW_HEIGHT / 5), new Color(88, 236, 236, 255));
+
         this.mainGameScene();
     }
 
@@ -78,8 +81,7 @@ public class GameScene extends JPanel {
         fallingOranges.start();
     }
 
-    public void limit()
-    {
+    public void limit() {
         if (this.tapozitPlayer.getRightHand().getX() + this.tapozitPlayer.getRightHand().getWidth() == Main.WINDOW_GAME_SCENE_WEIGHT)
             this.tapozitPlayer.moveLeft();
         else if (this.tapozitPlayer.getLeftHand().getX() == 0)

@@ -21,10 +21,8 @@ public class Main extends JFrame {
         this.setLayout(null);
         this.setLocationRelativeTo(null);
 
-
-        GameScene game = new GameScene(0,0,WINDOW_GAME_SCENE_WEIGHT , WINDOW_HEIGHT);
+        GameScene game = new GameScene(0, 0, WINDOW_GAME_SCENE_WEIGHT, WINDOW_HEIGHT);
         this.add(game);
-
 
         this.setVisible(true);
     }
