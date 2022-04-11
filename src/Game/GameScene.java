@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class GameScene extends JPanel {
     public static final int FALLING_ORANGES_AMOUNT = 2;
-    public static final int FALLING_ORANGES_SPEED = 1;
+    public static final int FALLING_ORANGES_SPEED = 50;
 
 
     private Player tapozitPlayer;
