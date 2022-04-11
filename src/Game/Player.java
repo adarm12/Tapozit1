@@ -12,15 +12,18 @@ public class Player {
     public static final int HEIGHT_BODY = 80;
     public static final int HEIGHT_BELT = 15;
     public static final int NECK_DISTANCE = 10;
-    public static final int NECK_HEIGHT = 15;
+    public static final int NECK_HEIGHT = 14;
     public static final int RIGHT = 1;
     public static final int LEFT = 2;
     public static final int PLAYER_SPEED = 10000;
     public static final int WEIGHT_HAND = 15;
     public static final int HEIGHT_HAND = 60;
-    public static final int BALL_SIZE = 60;
+    public static final int HEIGHT_FACE = 60;
+    public static final int WEIGHT_BASKET = 80;
+    public static final int HEIGHT_BASKET = 90;
 
 
+    private ImageIcon face;
     private Rectangle neck;
     private Rectangle body;
     private Rectangle belt;
@@ -29,8 +32,8 @@ public class Player {
     private Rectangle rightLeg;
     private Rectangle leftLeg;
     private int direction; // מצביע על הכיוון של השחקן
-    private ImageIcon face;
-    private Circle basket;
+    private ImageIcon basket;
+    private Rectangle sky;
 
     public Player() {
 
@@ -54,12 +57,12 @@ public class Player {
                 this.body.getY() + (this.body.getHeight() / 2) - HEIGHT_BELT / 2,
                 this.body.getWidth(), HEIGHT_BELT, Color.PINK);
 
+        this.face = new ImageIcon("face2.jpg");
+
         this.neck = new Rectangle(this.body.getX() + (this.body.getWidth() / 2) - NECK_DISTANCE,
                 this.body.getY() - NECK_HEIGHT,
                 NECK_DISTANCE * 2,
                 NECK_HEIGHT, new Color(255, 204, 153, 211));
-
-        this.face = new ImageIcon("face.jpg");
 
         this.rightHand = new Rectangle(this.body.getX() + this.body.getWidth(),
                 this.rightLeg.getY() - HEIGHT_BODY,
@@ -72,8 +75,8 @@ public class Player {
                 HEIGHT_HAND,
                 WEIGHT_HAND,
                 new Color(255, 204, 153, 211));
-
-        this.basket = new Circle(this.leftHand.getX() - (BALL_SIZE/3) , this.leftHand.getY() , BALL_SIZE, BALL_SIZE, new Color(86, 43,0, 236));
+        this.basket = new ImageIcon("basket.jpeg");
+        this.sky = new Rectangle(0,0,1500,150,new Color(88, 236, 236, 255));
     }
 
 
@@ -85,7 +88,6 @@ public class Player {
         this.neck.moveRight();
         this.rightHand.moveRight();
         this.leftHand.moveRight();
-
     }
 
     public void moveLeft() {
@@ -96,7 +98,6 @@ public class Player {
         this.neck.moveLeft();
         this.rightHand.moveLeft();
         this.leftHand.moveLeft();
-
     }
 
     public void paintComponent(Graphics graphics) {
@@ -105,10 +106,19 @@ public class Player {
         this.body.paint(graphics);
         this.belt.paint(graphics);
         this.neck.paint(graphics);
+        graphics.drawImage(face.getImage(),
+                this.body.getX() - this.rightHand.getWidth(),
+                this.neck.getY() - (this.neck.getHeight() * 4) ,
+                this.body.getWidth() +(2 * this.rightHand.getWidth()),
+                HEIGHT_FACE,null);
         this.rightHand.paint(graphics);
         this.leftHand.paint(graphics);
-        this.basket.paint(graphics);
-        // this.face.paintIcon( ,graphics, this.neck.getX(), this.neck.getY());
+        graphics.drawImage(basket.getImage(),this.leftHand.getX() - (WEIGHT_BASKET / 2),
+                this.leftHand.getY() + this.leftHand.getHeight(),
+                WEIGHT_BASKET,
+                HEIGHT_BASKET,
+                null);
+        this.sky.paint(graphics);
 
     }
 

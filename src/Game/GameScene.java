@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class GameScene extends JPanel {
     public static final int FALLING_ORANGES_AMOUNT = 2;
-    public static final int FALLING_ORANGES_SPEED = 50;
+    public static final int FALLING_ORANGES_SPEED = 1;
 
 
     private Player tapozitPlayer;
@@ -47,8 +47,10 @@ public class GameScene extends JPanel {
 
                 if (this.tapozitPlayer.getRightHand().getX() + this.tapozitPlayer.getRightHand().getWidth() == Main.WINDOW_GAME_SCENE_WEIGHT)
                     this.tapozitPlayer.moveLeft();
+
                 else if (this.tapozitPlayer.getLeftHand().getX() == 0)
                     this.tapozitPlayer.moveRight();
+
                 repaint();
                 try {
                     Thread.sleep(Player.PLAYER_SPEED);
@@ -64,6 +66,9 @@ public class GameScene extends JPanel {
             Random random = new Random();
 
             while (true) {
+
+//                this.requestFocus(true);
+//                this.setFocusable(true);
                 Orange orange = new Orange(random.nextInt(Main.WINDOW_WEIGHT), 0);
                 if (this.orangesList.size() <= FALLING_ORANGES_AMOUNT)
                     this.orangesList.add(orange);

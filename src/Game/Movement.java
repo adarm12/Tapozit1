@@ -1,10 +1,9 @@
 package Game;
-
 public class Movement{
-
 
     public void moveRight()
     {
+
 
     }
 
