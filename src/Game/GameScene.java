@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class GameScene extends JPanel {
     public static final int FALLING_ORANGES_AMOUNT = 2;
-    public static final int FALLING_ORANGES_SPEED = 50;
+    public static final int FALLING_ORANGES_SPEED = 2;
 
 
     private Player tapozitPlayer;
@@ -22,7 +22,7 @@ public class GameScene extends JPanel {
         this.orangesList = new ArrayList<>();
 
 
-        Rectangle sky = new Rectangle(0, 0, Main.WINDOW_GAME_SCENE_WEIGHT, (Main.WINDOW_HEIGHT / 5), new Color(88, 236, 236, 255));
+//        Rectangle sky = new Rectangle(0, 0, Main.WINDOW_GAME_SCENE_WEIGHT, (Main.WINDOW_HEIGHT / 5), new Color(88, 236, 236, 255));
 
         this.mainGameScene();
     }
@@ -66,7 +66,6 @@ public class GameScene extends JPanel {
                 Orange orange = new Orange(random.nextInt(Main.WINDOW_WEIGHT), 0);
                 if (this.orangesList.size() <= FALLING_ORANGES_AMOUNT)
                     this.orangesList.add(orange);
-
                 for (Orange oranges : this.orangesList) {
                     oranges.moveDown();
                 }

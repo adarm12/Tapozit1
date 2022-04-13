@@ -8,6 +8,7 @@ public class Orange {
     private Circle leaf;
     private int direction;
 
+
     public static final int ORANGE_WEIGHT = 45;
     public static final int ORANGE_HEIGHT = 45;
     public static final int LEAF_MARGIN = 3;
@@ -39,6 +40,7 @@ public class Orange {
     public void setDirection(int direction) {
         this.direction = direction;
     }
+
 }
 
 

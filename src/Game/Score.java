@@ -1,12 +1,22 @@
 package Game;
 
-public class Score {
+import javax.swing.*;
+import java.awt.*;
+
+public class Score extends JPanel {
 
     public static final int LIVES_IN_GAME = 3;
     public static final int SCORE_START = 0;
 
     private int lives;
     private int oranges;
+
+//    public Score(int x, int y, int weight, int height) {
+//        this.setBounds(x, y, weight, height);
+//        this.setBackground(new Color(8, 255, 7, 83));
+//        this.setLayout(null);
+//        this.setDoubleBuffered(true);
+//    }
 
 
     public Score() {
@@ -22,4 +32,5 @@ public class Score {
     public void collectedOranges() {
         this.oranges++;
     }
+
 }

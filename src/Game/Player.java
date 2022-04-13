@@ -15,7 +15,7 @@ public class Player {
     public static final int NECK_HEIGHT = 14;
     public static final int RIGHT = 1;
     public static final int LEFT = 2;
-    public static final int PLAYER_SPEED = 10000;
+    public static final int PLAYER_SPEED = 1;
     public static final int WEIGHT_HAND = 15;
     public static final int HEIGHT_HAND = 60;
     public static final int HEIGHT_FACE = 60;
