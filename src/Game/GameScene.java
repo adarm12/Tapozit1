@@ -7,8 +7,7 @@ import java.util.Random;
 
 public class GameScene extends JPanel {
     public static final int FALLING_ORANGES_AMOUNT = 2;
-    public static final int FALLING_ORANGES_SPEED = 2;
-
+    public static final int FALLING_ORANGES_SPEED = 30;
 
     private Player tapozitPlayer;
     private OrangeTree trees;
@@ -25,22 +24,20 @@ public class GameScene extends JPanel {
         this.orange = new Orange(random.nextInt(Main.WINDOW_WEIGHT), 0);
         this.orangesList.add(orange);
 
-//        Rectangle sky = new Rectangle(0, 0, Main.WINDOW_GAME_SCENE_WEIGHT, (Main.WINDOW_HEIGHT / 5), new Color(88, 236, 236, 255));
-
         this.mainGameScene();
+        this.fallingOranges();
     }
 
     private void mainGameScene() {
         Thread move = new Thread(() -> {
-            MovementKey movement = new MovementKey(this.tapozitPlayer);
-            this.addKeyListener(movement);
+            MovementKey movementKey = new MovementKey(this.tapozitPlayer);
+            this.addKeyListener(movementKey);
             this.setFocusable(true);
             this.requestFocus();
             this.setLayout(null);
             this.setDoubleBuffered(true);
 
             while (true) {
-
                 switch (this.tapozitPlayer.getDirection()) {
                     case Player.RIGHT: {
                         this.tapozitPlayer.moveRight();
@@ -54,18 +51,20 @@ public class GameScene extends JPanel {
                 limit();
                 repaint();
                 try {
-                    Thread.sleep(Player.PLAYER_SPEED);
+                    Thread.sleep(10);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         });
         move.start();
+    }
 
+    private void fallingOranges() {
         Thread fallingOranges = new Thread(() -> {
             while (true) {
                 this.orange.moveDown();
-                if (this.orange.getOrange().getY() == Main.WINDOW_HEIGHT){
+                if (this.orange.getOrange().getY() == Main.WINDOW_HEIGHT) {
                     this.orange.getOrange().setY(0);
                     this.orange.getLeaf().setY(0);
                     Random random = new Random();
@@ -109,9 +108,9 @@ public class GameScene extends JPanel {
 //    }
 
     public void limit() {
-        if (this.tapozitPlayer.getRightHand().getX() + this.tapozitPlayer.getRightHand().getWidth() == Main.WINDOW_GAME_SCENE_WEIGHT)
+        while (this.tapozitPlayer.getRightHand().getX() + this.tapozitPlayer.getRightHand().getWidth() == Main.WINDOW_GAME_SCENE_WEIGHT)
             this.tapozitPlayer.moveLeft();
-        else if (this.tapozitPlayer.getLeftHand().getX() == 0)
+        while (this.tapozitPlayer.getLeftHand().getX() == 0)
             this.tapozitPlayer.moveRight();
     }
 

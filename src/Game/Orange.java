@@ -29,17 +29,16 @@ public class Orange {
         this.leaf.setY(this.leaf.getY()+1);
     }
 
-    public void moveUp()
-    {
-        this.orange.setY(this.orange.getY()-1);
-        this.leaf.setY(this.leaf.getY()-1);
-    }
+//    public void moveUp()
+//    {
+//        this.orange.setY(this.orange.getY()-1);
+//        this.leaf.setY(this.leaf.getY()-1);
+//    }
 
     public void paint(Graphics graphics) {
         this.orange.paint(graphics);
         this.leaf.paint(graphics);
     }
-
 
     public int getDirection() {
         return direction;
@@ -64,14 +63,12 @@ public class Orange {
     public void setLeaf(Circle leaf) {
         this.leaf = leaf;
     }
+
+//    public void setLocation (int x, int y)
+//    {
+//        this.orange.setX(x);
+//        this.leaf.setX();
+//        this.orange.setY(y);
+//    }
+
 }
-
-
-
-
-
-
-
-
-
-
