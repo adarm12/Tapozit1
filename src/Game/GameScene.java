@@ -13,6 +13,7 @@ public class GameScene extends JPanel {
     private Player tapozitPlayer;
     private OrangeTree trees;
     private ArrayList<Orange> orangesList;
+    private Orange orange;
 
     public GameScene(int x, int y, int weight, int height) {
         this.setBounds(x, y, weight, height);
@@ -20,7 +21,9 @@ public class GameScene extends JPanel {
         this.tapozitPlayer = new Player();
         this.trees = new OrangeTree(10, 450);
         this.orangesList = new ArrayList<>();
-
+        Random random = new Random();
+        this.orange = new Orange(random.nextInt(Main.WINDOW_WEIGHT), 0);
+        this.orangesList.add(orange);
 
 //        Rectangle sky = new Rectangle(0, 0, Main.WINDOW_GAME_SCENE_WEIGHT, (Main.WINDOW_HEIGHT / 5), new Color(88, 236, 236, 255));
 
@@ -60,16 +63,19 @@ public class GameScene extends JPanel {
         move.start();
 
         Thread fallingOranges = new Thread(() -> {
-            Random random = new Random();
-
             while (true) {
-                Orange orange = new Orange(random.nextInt(Main.WINDOW_WEIGHT), 0);
-                if (this.orangesList.size() <= FALLING_ORANGES_AMOUNT)
-                    this.orangesList.add(orange);
-                for (Orange oranges : this.orangesList) {
-                    oranges.moveDown();
+                this.orange.moveDown();
+                if (this.orange.getOrange().getY() == Main.WINDOW_HEIGHT){
+                    this.orange.getOrange().setY(0);
+                    this.orange.getLeaf().setY(0);
+                    Random random = new Random();
+                    int randomX = random.nextInt(Main.WINDOW_WEIGHT);
+                    this.orange.getOrange().setX(randomX);
+                    this.orange.getLeaf().setX(this.orange.getOrange().getX() + (this.orange.getOrange().getWidth() / 2));
+
                 }
                 repaint();
+
                 try {
                     Thread.sleep(FALLING_ORANGES_SPEED);
                 } catch (InterruptedException e) {
@@ -79,6 +85,28 @@ public class GameScene extends JPanel {
         });
         fallingOranges.start();
     }
+
+
+//        Thread fallingOranges = new Thread(() -> {
+//            Random random = new Random();
+//
+//            while (true) {
+//                Orange orange = new Orange(random.nextInt(Main.WINDOW_WEIGHT), 0);
+//                if (this.orangesList.size() <= FALLING_ORANGES_AMOUNT)
+//                    this.orangesList.add(orange);
+//                for (Orange oranges : this.orangesList) {
+//                    oranges.moveDown();
+//                }
+//                repaint();
+//                try {
+//                    Thread.sleep(FALLING_ORANGES_SPEED);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+//        fallingOranges.start();
+//    }
 
     public void limit() {
         if (this.tapozitPlayer.getRightHand().getX() + this.tapozitPlayer.getRightHand().getWidth() == Main.WINDOW_GAME_SCENE_WEIGHT)

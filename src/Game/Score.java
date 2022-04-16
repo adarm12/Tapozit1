@@ -11,12 +11,12 @@ public class Score extends JPanel {
     private int lives;
     private int oranges;
 
-//    public Score(int x, int y, int weight, int height) {
-//        this.setBounds(x, y, weight, height);
-//        this.setBackground(new Color(8, 255, 7, 83));
-//        this.setLayout(null);
-//        this.setDoubleBuffered(true);
-//    }
+    public Score(int x, int y, int weight, int height) {
+        this.setBounds(x, y, weight, height);
+        this.setBackground(new Color(8, 255, 7, 83));
+        this.setLayout(null);
+        this.setDoubleBuffered(true);
+    }
 
 
     public Score() {
