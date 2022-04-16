@@ -33,7 +33,8 @@ public class Main extends JFrame {
                 , BUTTON_HEIGHT);
         startButton.addActionListener((event) -> {
             startButton.setVisible(false);
-//
+
+
 //            Score score = new Score(WINDOW_GAME_SCENE_WEIGHT, 0, Main.WINDOW_WEIGHT - WINDOW_GAME_SCENE_WEIGHT , WINDOW_HEIGHT);
 //            this.add(score);
 

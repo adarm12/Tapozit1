@@ -8,21 +8,25 @@ import java.util.Random;
 public class GameScene extends JPanel {
     public static final int FALLING_ORANGES_AMOUNT = 2;
     public static final int FALLING_ORANGES_SPEED = 30;
+
+    public static final int SCORE_START = 0;
     Random random = new Random();
+
     private Player tapozitPlayer;
     private ArrayList<Orange> orangesList;
     private Orange orange;
     private OrangeTree orangeTree;
 
 
-    public GameScene(int x, int y, int weight, int height) {
-        this.setBounds(x, y, weight, height);
+    public GameScene(int x, int y, int width, int height) {
+        this.setBounds(x, y, width, height);
         this.tapozitPlayer = new Player();
         this.orangesList = new ArrayList<>();
         this.orange = new Orange(random.nextInt(Main.WINDOW_WEIGHT), 0);
         this.orangesList.add(orange);
-        this.orangeTree = new OrangeTree(weight - OrangeTree.TOP_WIDTH - OrangeTree.TREE_MARGIN,
+        this.orangeTree = new OrangeTree(width - OrangeTree.TOP_WIDTH - OrangeTree.TREE_MARGIN,
                 height - OrangeTree.TOP_HEIGHT - OrangeTree.TRUNK_HEIGHT - OrangeTree.TREE_MARGIN);
+        Live score = new Live();
         this.mainGameScene();
         this.fallingOranges();
     }
@@ -118,9 +122,9 @@ public class GameScene extends JPanel {
 
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
+        this.orangeTree.paintComponent(graphics);
         this.tapozitPlayer.paintComponent(graphics);
         this.orange.paint(graphics);
-        this.orangeTree.paintComponent(graphics);
         for (Orange orange : orangesList) {
             orange.paint(graphics);
         }

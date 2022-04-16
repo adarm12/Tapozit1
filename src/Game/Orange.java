@@ -21,18 +21,11 @@ public class Orange {
                 this.orange.getY() + LEAF_MARGIN, LEAF_WEIGHT, LEAF_HEIGHT, new Color(0, 204, 0));
     }
 
-
     public void moveDown()
     {
         this.orange.setY(this.orange.getY()+1);
         this.leaf.setY(this.leaf.getY()+1);
     }
-
-//    public void moveUp()
-//    {
-//        this.orange.setY(this.orange.getY()-1);
-//        this.leaf.setY(this.leaf.getY()-1);
-//    }
 
     public void paint(Graphics graphics) {
         this.orange.paint(graphics);
