@@ -16,7 +16,7 @@ public class Live {
         this.amountLive = LIVES_IN_GAME;
     }
 
-    public void loseLive() {
+    public void loseLive() { // נסתיר את התמונה
         this.amountLive--;
     }
 
