@@ -12,8 +12,6 @@ public class GameScene extends JPanel {
     private Player tapozitPlayer;
     private ArrayList<Orange> orangesList;
     private Orange orange;
-    private OrangeTree orangeTree;
-
 
     public GameScene(int x, int y, int weight, int height) {
         this.setBounds(x, y, weight, height);
@@ -21,12 +19,9 @@ public class GameScene extends JPanel {
         this.orangesList = new ArrayList<>();
         this.orange = new Orange(random.nextInt(Main.WINDOW_WEIGHT), 0);
         this.orangesList.add(orange);
-        this.orangeTree = new OrangeTree(weight - OrangeTree.TOP_WIDTH - OrangeTree.TREE_MARGIN,
-                height - OrangeTree.TOP_HEIGHT - OrangeTree.TRUNK_HEIGHT - OrangeTree.TREE_MARGIN);
 
         this.mainGameScene();
         this.fallingOranges();
-
     }
 
     private void mainGameScene() {
@@ -107,14 +102,14 @@ public class GameScene extends JPanel {
 //    }
 
     public void limit() {
-        while (this.tapozitPlayer.getRightHand().getX() + this.tapozitPlayer.getRightHand().getWidth() == Main.WINDOW_WEIGHT)
+        while (this.tapozitPlayer.getRightHand().getX() + this.tapozitPlayer.getRightHand().getWidth() == Main.WINDOW_GAME_SCENE_WEIGHT)
             this.tapozitPlayer.moveLeft();
-        while (this.tapozitPlayer.getLeftHand().getX() - (Player.WEIGHT_BASKET / 2) == 0)
+        while (this.tapozitPlayer.getLeftHand().getX() - (this.tapozitPlayer.getBasket().getIconWidth()/2) == 0)
             this.tapozitPlayer.moveRight();
     }
 
     public void newOrange() {
-        this.orange.setLocation(random.nextInt(Main.WINDOW_WEIGHT), 0);
+        this.orange.setLocation(random.nextInt(Main.WINDOW_GAME_SCENE_WEIGHT), 0);
     }
 
 
@@ -122,7 +117,6 @@ public class GameScene extends JPanel {
         super.paintComponent(graphics);
         this.tapozitPlayer.paintComponent(graphics);
         this.orange.paint(graphics);
-        this.orangeTree.paintComponent(graphics);
         for (Orange orange : orangesList) {
             orange.paint(graphics);
         }
