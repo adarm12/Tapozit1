@@ -24,6 +24,7 @@ public class Main extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
+
         JButton startButton = new JButton("Start game");
         this.add(startButton);
         startButton.setBounds((WINDOW_WEIGHT / 2) - (BUTTON_WEIGHT / 2),

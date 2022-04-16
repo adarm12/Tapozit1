@@ -32,6 +32,7 @@ public class OrangeTree {
         this.orange2 = new Orange(this.top.getX() + ORENGE2_X,this.top.getY() + ORENGE2_Y);
         this.orange3 = new Orange(this.top.getX() + ORENGE3_X,this.top.getY() + ORENGE3_Y);
 
+
     }
 
     public void paintComponent(Graphics graphics) {
