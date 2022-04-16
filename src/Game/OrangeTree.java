@@ -13,7 +13,7 @@ public class OrangeTree {
     public static final int ORENGE2_Y = 30;
     public static final int ORENGE3_X = 50;
     public static final int ORENGE3_Y = 75;
-
+    public static final int TREE_MARGIN = 50;
 
 
     private Rect trunk;
@@ -33,8 +33,6 @@ public class OrangeTree {
         this.orange3 = new Orange(this.top.getX() + ORENGE3_X,this.top.getY() + ORENGE3_Y);
 
     }
-
-
 
     public void paintComponent(Graphics graphics) {
         this.trunk.paint(graphics);

@@ -18,7 +18,7 @@ public class Score extends JPanel {
         this.setLayout(null);
         this.setDoubleBuffered(true);
 
-        this.trees = new OrangeTree(weight - OrangeTree.TOP_WIDTH , height - OrangeTree.TOP_HEIGHT - OrangeTree.TRUNK_HEIGHT);
+//        this.trees = new OrangeTree(weight - OrangeTree.TOP_WIDTH , height - OrangeTree.TOP_HEIGHT - OrangeTree.TRUNK_HEIGHT);
         this.setVisible(true);
    }
 
