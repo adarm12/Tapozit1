@@ -13,8 +13,8 @@ public class Score extends JPanel {
     private OrangeTree trees;
 
     public Score(int x, int y, int weight, int height) {
-        this.setBounds(x, y, weight, height);
         this.setBackground(new Color(8, 255, 7, 83));
+        this.setBounds(x, y, weight, height);
         this.setLayout(null);
         this.setDoubleBuffered(true);
 

@@ -10,15 +10,15 @@ public class GameScene extends JPanel {
     public static final int FALLING_ORANGES_SPEED = 30;
     Random random = new Random();
     private Player tapozitPlayer;
-    private ArrayList<Orange> orangesList;
+   // private ArrayList<Orange> orangesList;
     private Orange orange;
 
     public GameScene(int x, int y, int weight, int height) {
         this.setBounds(x, y, weight, height);
         this.tapozitPlayer = new Player();
-        this.orangesList = new ArrayList<>();
+     //   this.orangesList = new ArrayList<>();
         this.orange = new Orange(random.nextInt(Main.WINDOW_WEIGHT), 0);
-        this.orangesList.add(orange);
+     //   this.orangesList.add(orange);
 
         this.mainGameScene();
         this.fallingOranges();
@@ -104,7 +104,7 @@ public class GameScene extends JPanel {
     public void limit() {
         while (this.tapozitPlayer.getRightHand().getX() + this.tapozitPlayer.getRightHand().getWidth() == Main.WINDOW_GAME_SCENE_WEIGHT)
             this.tapozitPlayer.moveLeft();
-        while (this.tapozitPlayer.getLeftHand().getX() - (this.tapozitPlayer.getBasket().getIconWidth()/2) == 0)
+        while (this.tapozitPlayer.getLeftHand().getX() - Player.WEIGHT_BASKET/2 == 0)
             this.tapozitPlayer.moveRight();
     }
 
@@ -117,8 +117,8 @@ public class GameScene extends JPanel {
         super.paintComponent(graphics);
         this.tapozitPlayer.paintComponent(graphics);
         this.orange.paint(graphics);
-        for (Orange orange : orangesList) {
-            orange.paint(graphics);
-        }
+//        for (Orange orange : orangesList) {
+//            orange.paint(graphics);
+//        }
     }
 }
