@@ -64,11 +64,12 @@ public class Orange {
         this.leaf = leaf;
     }
 
-//    public void setLocation (int x, int y)
-//    {
-//        this.orange.setX(x);
-//        this.leaf.setX();
-//        this.orange.setY(y);
-//    }
+    public void setLocation (int x, int y)
+    {
+        this.orange.setX(x);
+        this.orange.setY(y);
+        this.leaf.setX(x + (this.orange.getWidth() / 2));
+        this.leaf.setY(y + LEAF_MARGIN);
 
+    }
 }

@@ -15,7 +15,6 @@ public class Player {
     public static final int NECK_HEIGHT = 14;
     public static final int RIGHT = 1;
     public static final int LEFT = 2;
-    public static final int PLAYER_SPEED = 1000;
     public static final int WEIGHT_HAND = 15;
     public static final int HEIGHT_HAND = 60;
     public static final int HEIGHT_FACE = 60;
@@ -24,53 +23,52 @@ public class Player {
 
 
     private ImageIcon face;
-    private Rectangle neck;
-    private Rectangle body;
-    private Rectangle belt;
-    private Rectangle rightHand;
-    private Rectangle leftHand;
-    private Rectangle rightLeg;
-    private Rectangle leftLeg;
+    private Rect neck;
+    private Rect body;
+    private Rect belt;
+    private Rect rightHand;
+    private Rect leftHand;
+    private Rect rightLeg;
+    private Rect leftLeg;
     private int direction; // מצביע על הכיוון של השחקן
     private ImageIcon basket;
-    private Rectangle sky;
 
     public Player() {
 
-        this.leftLeg = new Rectangle(Main.WINDOW_GAME_SCENE_WEIGHT / 2,
+        this.leftLeg = new Rect(Main.WINDOW_GAME_SCENE_WEIGHT / 2,
                 Main.WINDOW_HEIGHT - MARGIN_BOTTOM,
                 WEIGHT_LEG, HEIGHT_LEG,
                 new Color(255, 204, 153, 211));
 
-        this.rightLeg = new Rectangle(Main.WINDOW_GAME_SCENE_WEIGHT / 2 + this.leftLeg.getWidth() + MARGIN_LEG,
+        this.rightLeg = new Rect(Main.WINDOW_GAME_SCENE_WEIGHT / 2 + this.leftLeg.getWidth() + MARGIN_LEG,
                 Main.WINDOW_HEIGHT - MARGIN_BOTTOM,
                 WEIGHT_LEG, HEIGHT_LEG,
                 new Color(255, 204, 153, 211));
 
-        this.body = new Rectangle(this.leftLeg.getX(),
+        this.body = new Rect(this.leftLeg.getX(),
                 this.rightLeg.getY() - HEIGHT_BODY,
                 (2 * WEIGHT_LEG) + MARGIN_LEG,
                 HEIGHT_BODY,
                 new Color(255, 0, 127));
 
-        this.belt = new Rectangle(this.leftLeg.getX(),
+        this.belt = new Rect(this.leftLeg.getX(),
                 this.body.getY() + (this.body.getHeight() / 2) - HEIGHT_BELT / 2,
                 this.body.getWidth(), HEIGHT_BELT, Color.PINK);
 
         this.face = new ImageIcon("face2.jpg");
 
-        this.neck = new Rectangle(this.body.getX() + (this.body.getWidth() / 2) - NECK_DISTANCE,
+        this.neck = new Rect(this.body.getX() + (this.body.getWidth() / 2) - NECK_DISTANCE,
                 this.body.getY() - NECK_HEIGHT,
                 NECK_DISTANCE * 2,
                 NECK_HEIGHT, new Color(255, 204, 153, 211));
 
-        this.rightHand = new Rectangle(this.body.getX() + this.body.getWidth(),
+        this.rightHand = new Rect(this.body.getX() + this.body.getWidth(),
                 this.rightLeg.getY() - HEIGHT_BODY,
                 WEIGHT_HAND,
                 HEIGHT_HAND,
                 new Color(255, 204, 153, 211));
 
-        this.leftHand = new Rectangle(this.body.getX() - HEIGHT_HAND,
+        this.leftHand = new Rect(this.body.getX() - HEIGHT_HAND,
                 this.rightLeg.getY() - HEIGHT_BODY,
                 HEIGHT_HAND,
                 WEIGHT_HAND,
@@ -127,59 +125,59 @@ public class Player {
         this.direction = direction;
     }
 
-    public Rectangle getNeck() {
+    public Rect getNeck() {
         return neck;
     }
 
-    public void setNeck(Rectangle neck) {
+    public void setNeck(Rect neck) {
         this.neck = neck;
     }
 
-    public Rectangle getBody() {
+    public Rect getBody() {
         return body;
     }
 
-    public void setBody(Rectangle body) {
+    public void setBody(Rect body) {
         this.body = body;
     }
 
-    public Rectangle getBelt() {
+    public Rect getBelt() {
         return belt;
     }
 
-    public void setBelt(Rectangle belt) {
+    public void setBelt(Rect belt) {
         this.belt = belt;
     }
 
-    public Rectangle getRightHand() {
+    public Rect getRightHand() {
         return rightHand;
     }
 
-    public void setRightHand(Rectangle rightHand) {
+    public void setRightHand(Rect rightHand) {
         this.rightHand = rightHand;
     }
 
-    public Rectangle getLeftHand() {
+    public Rect getLeftHand() {
         return leftHand;
     }
 
-    public void setLeftHand(Rectangle leftHand) {
+    public void setLeftHand(Rect leftHand) {
         this.leftHand = leftHand;
     }
 
-    public Rectangle getRightLeg() {
+    public Rect getRightLeg() {
         return rightLeg;
     }
 
-    public void setRightLeg(Rectangle rightLeg) {
+    public void setRightLeg(Rect rightLeg) {
         this.rightLeg = rightLeg;
     }
 
-    public Rectangle getLeftLeg() {
+    public Rect getLeftLeg() {
         return leftLeg;
     }
 
-    public void setLeftLeg(Rectangle leftLeg) {
+    public void setLeftLeg(Rect leftLeg) {
         this.leftLeg = leftLeg;
     }
 
@@ -190,4 +188,28 @@ public class Player {
     public void setFace(ImageIcon face) {
         this.face = face;
     }
+
+    public ImageIcon getBasket() {
+        return basket;
+    }
+
+    public void setBasket(ImageIcon basket) {
+        this.basket = basket;
+    }
+
+    public boolean isCollected(Orange orange) {
+        boolean collect = false;
+        Rectangle orangeToCollect = new Rectangle(orange.getOrange().getX(), orange.getOrange().getY(),
+                orange.getOrange().getWidth(), orange.getOrange().getHeight());
+
+        Rectangle playerBody = new Rectangle(
+                this.leftHand.getX(), this.leftHand.getY(),
+                this.leftHand.getWidth() + this.body.getWidth(), this.leftHand.getHeight());
+
+        if (orangeToCollect.intersects(playerBody))
+            collect = true;
+
+        return collect;
+    }
+
 }

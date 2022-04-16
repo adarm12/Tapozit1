@@ -16,7 +16,7 @@ public class OrangeTree {
 
 
 
-    private Rectangle trunk;
+    private Rect trunk;
     private Circle top;
     private Orange orange1;
     private Orange orange2;
@@ -24,7 +24,7 @@ public class OrangeTree {
 
     public OrangeTree(int x, int y) {
         this.top = new Circle(x,y,TOP_WIDTH,TOP_HEIGHT,new Color(0, 153, 0));
-        this.trunk = new Rectangle(this.top.getX() + (this.top.getWidth() / 2) - (TRUNK_WIDTH / 2),
+        this.trunk = new Rect(this.top.getX() + (this.top.getWidth() / 2) - (TRUNK_WIDTH / 2),
                 this.top.getY() + this.top.getHeight(),
                 TRUNK_WIDTH, TRUNK_HEIGHT,
                 new Color(102, 51, 0));

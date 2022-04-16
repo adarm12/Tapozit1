@@ -8,19 +8,15 @@ import java.util.Random;
 public class GameScene extends JPanel {
     public static final int FALLING_ORANGES_AMOUNT = 2;
     public static final int FALLING_ORANGES_SPEED = 30;
-
+    Random random = new Random();
     private Player tapozitPlayer;
-    private OrangeTree trees;
     private ArrayList<Orange> orangesList;
     private Orange orange;
 
     public GameScene(int x, int y, int weight, int height) {
         this.setBounds(x, y, weight, height);
-        this.setBackground(new Color(204, 255, 204));
         this.tapozitPlayer = new Player();
-        this.trees = new OrangeTree(10, 450);
         this.orangesList = new ArrayList<>();
-        Random random = new Random();
         this.orange = new Orange(random.nextInt(Main.WINDOW_WEIGHT), 0);
         this.orangesList.add(orange);
 
@@ -36,6 +32,7 @@ public class GameScene extends JPanel {
             this.requestFocus();
             this.setLayout(null);
             this.setDoubleBuffered(true);
+            this.setBackground(new Color(204, 255, 204));
 
             while (true) {
                 switch (this.tapozitPlayer.getDirection()) {
@@ -48,6 +45,9 @@ public class GameScene extends JPanel {
                         break;
                     }
                 }
+                // for ()
+                if (this.tapozitPlayer.isCollected(orange))
+                    newOrange();
                 limit();
                 repaint();
                 try {
@@ -65,13 +65,7 @@ public class GameScene extends JPanel {
             while (true) {
                 this.orange.moveDown();
                 if (this.orange.getOrange().getY() == Main.WINDOW_HEIGHT) {
-                    this.orange.getOrange().setY(0);
-                    this.orange.getLeaf().setY(0);
-                    Random random = new Random();
-                    int randomX = random.nextInt(Main.WINDOW_WEIGHT);
-                    this.orange.getOrange().setX(randomX);
-                    this.orange.getLeaf().setX(this.orange.getOrange().getX() + (this.orange.getOrange().getWidth() / 2));
-
+                    newOrange();
                 }
                 repaint();
 
@@ -110,14 +104,19 @@ public class GameScene extends JPanel {
     public void limit() {
         while (this.tapozitPlayer.getRightHand().getX() + this.tapozitPlayer.getRightHand().getWidth() == Main.WINDOW_GAME_SCENE_WEIGHT)
             this.tapozitPlayer.moveLeft();
-        while (this.tapozitPlayer.getLeftHand().getX() == 0)
+        while (this.tapozitPlayer.getLeftHand().getX() - (this.tapozitPlayer.getBasket().getIconWidth()/2) == 0)
             this.tapozitPlayer.moveRight();
     }
 
+    public void newOrange() {
+        this.orange.setLocation(random.nextInt(Main.WINDOW_GAME_SCENE_WEIGHT), 0);
+    }
+
+
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        this.trees.paintComponent(graphics);
         this.tapozitPlayer.paintComponent(graphics);
+        this.orange.paint(graphics);
         for (Orange orange : orangesList) {
             orange.paint(graphics);
         }
