@@ -16,6 +16,8 @@ public class GameScene extends JPanel {
     private ArrayList<Orange> orangesList;
     private Orange orange;
     private OrangeTree orangeTree;
+    private ImageIcon live;
+    private ArrayList<ImageIcon> lives;
 
 
     public GameScene(int x, int y, int width, int height) {
@@ -29,6 +31,12 @@ public class GameScene extends JPanel {
         Live score = new Live();
         this.mainGameScene();
         this.fallingOranges();
+        this.live = new ImageIcon("heart.png");
+        this.lives = new ArrayList<>(3);
+        this.lives.add(0, live);
+        this.lives.add(1, live);
+        this.lives.add(2, live);
+
     }
 
     private void mainGameScene() {
@@ -75,7 +83,6 @@ public class GameScene extends JPanel {
                     newOrange();
                 }
                 repaint();
-
                 try {
                     Thread.sleep(FALLING_ORANGES_SPEED);
                 } catch (InterruptedException e) {
@@ -85,7 +92,6 @@ public class GameScene extends JPanel {
         });
         fallingOranges.start();
     }
-
 
 //        Thread fallingOranges = new Thread(() -> {
 //            Random random = new Random();
@@ -127,6 +133,11 @@ public class GameScene extends JPanel {
         this.orange.paint(graphics);
         for (Orange orange : orangesList) {
             orange.paint(graphics);
+        }
+        for (ImageIcon live : lives) {
+            graphics.drawImage(lives.get(0).getImage(), Main.WINDOW_WEIGHT - Live.LIVE_WIDTH - Live.LIVE_MARGIN, Live.LIVE_Y, Live.LIVE_WIDTH, Live.LIVE_HEIGHT, null);
+            graphics.drawImage(lives.get(1).getImage(), Main.WINDOW_WEIGHT - (Live.LIVE_WIDTH * 2) - Live.LIVE_MARGIN, Live.LIVE_Y, Live.LIVE_WIDTH, Live.LIVE_HEIGHT, null);
+            graphics.drawImage(lives.get(2).getImage(), Main.WINDOW_WEIGHT - (Live.LIVE_WIDTH * 3) - Live.LIVE_MARGIN, Live.LIVE_Y, Live.LIVE_WIDTH, Live.LIVE_HEIGHT, null);
         }
     }
 }
