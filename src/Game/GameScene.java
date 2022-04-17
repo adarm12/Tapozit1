@@ -1,14 +1,21 @@
 package Game;
 
+import com.sun.corba.se.impl.activation.ProcessMonitorThread;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 
 public class GameScene extends JPanel {
     public static final int FALLING_ORANGES_AMOUNT = 2;
-    public static final int FALLING_ORANGES_SPEED = 30;
+    public static final int FALLING_ORANGES_SPEED = 5;
+    public static final int EXIT_BUTTON_X = 40;
+    public static final int EXIT_BUTTON_Y = 875;
+    public static final int EXIT_BUTTON_WIDTH = 100;
+    public static final int EXIT_BUTTON_HEIGHT = 40;
 
     public static final int SCORE_START = 0;
     Random random = new Random();
@@ -38,6 +45,7 @@ public class GameScene extends JPanel {
         this.lives.add(1, live);
         this.lives.add(2, live);
 
+        exitButton();
     }
 
     private void mainGameScene() {
@@ -126,6 +134,14 @@ public class GameScene extends JPanel {
         this.orange.setLocation(random.nextInt(Main.WINDOW_WEIGHT), 0);
     }
 
+    public void exitButton() {
+        JButton exitButton = new JButton("Exit");
+        this.add(exitButton);
+        exitButton.setBounds(EXIT_BUTTON_X, EXIT_BUTTON_Y, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT);
+        exitButton.addActionListener((event) -> {
+            Main main = new Main();
+        });
+    }
 
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
@@ -135,10 +151,17 @@ public class GameScene extends JPanel {
         for (Orange orange : orangesList) {
             orange.paint(graphics);
         }
-        for (ImageIcon live : lives) {
-            graphics.drawImage(lives.get(0).getImage(), Main.WINDOW_WEIGHT - Live.LIVE_WIDTH - Live.LIVE_MARGIN, Live.LIVE_Y, Live.LIVE_WIDTH, Live.LIVE_HEIGHT, null);
-            graphics.drawImage(lives.get(1).getImage(), Main.WINDOW_WEIGHT - (Live.LIVE_WIDTH * 2) - Live.LIVE_MARGIN, Live.LIVE_Y, Live.LIVE_WIDTH, Live.LIVE_HEIGHT, null);
-            graphics.drawImage(lives.get(2).getImage(), Main.WINDOW_WEIGHT - (Live.LIVE_WIDTH * 3) - Live.LIVE_MARGIN, Live.LIVE_Y, Live.LIVE_WIDTH, Live.LIVE_HEIGHT, null);
-        }
+        graphics.drawImage(lives.get(0).getImage(),
+                Main.WINDOW_WEIGHT - Live.LIVE_WIDTH - Live.LIVE_MARGIN,
+                Live.LIVE_Y, Live.LIVE_WIDTH, Live.LIVE_HEIGHT, null);
+        graphics.drawImage(lives.get(1).getImage(),
+                Main.WINDOW_WEIGHT - (Live.LIVE_WIDTH * 2) - Live.LIVE_MARGIN,
+                Live.LIVE_Y, Live.LIVE_WIDTH, Live.LIVE_HEIGHT, null);
+        graphics.drawImage(lives.get(2).getImage(),
+                Main.WINDOW_WEIGHT - (Live.LIVE_WIDTH * 3) - Live.LIVE_MARGIN,
+                Live.LIVE_Y, Live.LIVE_WIDTH, Live.LIVE_HEIGHT, null);
     }
 }
+
+
+

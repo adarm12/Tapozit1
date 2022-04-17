@@ -41,7 +41,6 @@ public class OrangeTree {
         this.orange1.paint(graphics);
         this.orange2.paint(graphics);
         this.orange3.paint(graphics);
-
     }
 
 }
