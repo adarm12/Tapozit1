@@ -24,8 +24,7 @@ public class GameScene extends JPanel {
     private ArrayList<Orange> orangesList;
     private Orange orange;
     private OrangeTree orangeTree;
-    private ImageIcon live;
-    private ArrayList<ImageIcon> lives;
+    private Live live;
 
 
     public GameScene(int x, int y, int width, int height) {
@@ -39,12 +38,7 @@ public class GameScene extends JPanel {
         Live score = new Live();
         this.mainGameScene();
         this.fallingOranges();
-        this.live = new ImageIcon("heart.png");
-        this.lives = new ArrayList<>(3);
-        this.lives.add(0, live);
-        this.lives.add(1, live);
-        this.lives.add(2, live);
-
+        this.live = new Live();
         exitButton();
     }
 
@@ -90,6 +84,7 @@ public class GameScene extends JPanel {
                 this.orange.moveDown();
                 if (this.orange.getOrange().getY() == Main.WINDOW_HEIGHT) {
                     newOrange();
+                    this.live.loseLive();
                 }
                 repaint();
                 try {
@@ -151,15 +146,7 @@ public class GameScene extends JPanel {
         for (Orange orange : orangesList) {
             orange.paint(graphics);
         }
-        graphics.drawImage(lives.get(0).getImage(),
-                Main.WINDOW_WEIGHT - Live.LIVE_WIDTH - Live.LIVE_MARGIN,
-                Live.LIVE_Y, Live.LIVE_WIDTH, Live.LIVE_HEIGHT, null);
-        graphics.drawImage(lives.get(1).getImage(),
-                Main.WINDOW_WEIGHT - (Live.LIVE_WIDTH * 2) - Live.LIVE_MARGIN,
-                Live.LIVE_Y, Live.LIVE_WIDTH, Live.LIVE_HEIGHT, null);
-        graphics.drawImage(lives.get(2).getImage(),
-                Main.WINDOW_WEIGHT - (Live.LIVE_WIDTH * 3) - Live.LIVE_MARGIN,
-                Live.LIVE_Y, Live.LIVE_WIDTH, Live.LIVE_HEIGHT, null);
+        this.live.paintComponent(graphics);
     }
 }
 
