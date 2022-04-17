@@ -5,6 +5,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
+
 public class GameScene extends JPanel {
     public static final int FALLING_ORANGES_AMOUNT = 2;
     public static final int FALLING_ORANGES_SPEED = 30;
