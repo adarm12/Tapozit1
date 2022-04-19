@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class GameScene extends JPanel {
     public static final int FALLING_ORANGES_AMOUNT = 2;
-    public static final int FALLING_ORANGES_SPEED = 5;
+    public static final int FALLING_ORANGES_SPEED =10;
     public static final int EXIT_BUTTON_X = 40;
     public static final int EXIT_BUTTON_Y = 875;
     public static final int EXIT_BUTTON_WIDTH = 100;
