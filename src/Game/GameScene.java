@@ -1,17 +1,14 @@
 package Game;
 
-import com.sun.corba.se.impl.activation.ProcessMonitorThread;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 
 public class GameScene extends JPanel {
     public static final int FALLING_ORANGES_AMOUNT = 2;
-    public static final int FALLING_ORANGES_SPEED =10;
+    public static final int FALLING_ORANGES_SPEED = 10;
     public static final int EXIT_BUTTON_X = 40;
     public static final int EXIT_BUTTON_Y = 875;
     public static final int EXIT_BUTTON_WIDTH = 100;
@@ -25,21 +22,23 @@ public class GameScene extends JPanel {
     private Orange orange;
     private OrangeTree orangeTree;
     private Live live;
-
+    private Score score;
+    private JButton exitButton;
 
     public GameScene(int x, int y, int width, int height) {
         this.setBounds(x, y, width, height);
         this.tapozitPlayer = new Player();
         this.orangesList = new ArrayList<>();
-        this.orange = new Orange(random.nextInt(Main.WINDOW_WEIGHT), 0);
+        this.orange = new Orange(random.nextInt(Window.WINDOW_WIDTH), 0);
         this.orangesList.add(orange);
         this.orangeTree = new OrangeTree(width - OrangeTree.TOP_WIDTH - OrangeTree.TREE_MARGIN,
                 height - OrangeTree.TOP_HEIGHT - OrangeTree.TRUNK_HEIGHT - OrangeTree.TREE_MARGIN);
-        Live score = new Live();
         this.mainGameScene();
         this.fallingOranges();
         this.live = new Live();
-        exitButton();
+        this.score = new Score(x, y, width, height);
+        this.exitButton();
+        this.scoreBoard();
     }
 
     private void mainGameScene() {
@@ -51,6 +50,7 @@ public class GameScene extends JPanel {
             this.setLayout(null);
             this.setDoubleBuffered(true);
             this.setBackground(new Color(204, 255, 204));
+
 
             while (true) {
                 switch (this.tapozitPlayer.getDirection()) {
@@ -64,12 +64,20 @@ public class GameScene extends JPanel {
                     }
                 }
                 // for ()
-                if (this.tapozitPlayer.isCollected(orange))
-                    newOrange();
-                limit();
+                if (this.tapozitPlayer.isCollected(orange)) {
+                    this.newOrange();
+                    int point = this.score.addPoint();
+                    System.out.println(point);
+                    this.addPoint();
+                    this.delete();
+                    if (this.score.getPoints() == 30) {
+                        this.win();
+                    }
+                }
+                this.limit();
                 repaint();
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(1);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -82,8 +90,8 @@ public class GameScene extends JPanel {
         Thread fallingOranges = new Thread(() -> {
             while (true) {
                 this.orange.moveDown();
-                if (this.orange.getOrange().getY() == Main.WINDOW_HEIGHT) {
-                    newOrange();
+                if (this.orange.getOrange().getY() == Window.WINDOW_HEIGHT) {
+                    this.newOrange();
                     this.live.loseLive();
                 }
                 repaint();
@@ -96,6 +104,16 @@ public class GameScene extends JPanel {
         });
         fallingOranges.start();
     }
+
+//    private void score() {
+//        Thread score = new Thread(() -> {
+//            while (true) {
+//                this.addPoint();
+//                repaint();
+//            }
+//        });
+//        score.start();
+//    }
 
 //        Thread fallingOranges = new Thread(() -> {
 //            Random random = new Random();
@@ -119,14 +137,14 @@ public class GameScene extends JPanel {
 //    }
 
     public void limit() {
-        while (this.tapozitPlayer.getRightHand().getX() + this.tapozitPlayer.getRightHand().getWidth() == Main.WINDOW_WEIGHT)
+        while (this.tapozitPlayer.getRightHand().getX() + this.tapozitPlayer.getRightHand().getWidth() == Window.WINDOW_WIDTH)
             this.tapozitPlayer.moveLeft();
         while (this.tapozitPlayer.getLeftHand().getX() - (Player.WEIGHT_BASKET / 2) == 0)
             this.tapozitPlayer.moveRight();
     }
 
     public void newOrange() {
-        this.orange.setLocation(random.nextInt(Main.WINDOW_WEIGHT), 0);
+        this.orange.setLocation(random.nextInt(Window.WINDOW_WIDTH), 0);
     }
 
     public void exitButton() {
@@ -134,8 +152,42 @@ public class GameScene extends JPanel {
         this.add(exitButton);
         exitButton.setBounds(EXIT_BUTTON_X, EXIT_BUTTON_Y, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT);
         exitButton.addActionListener((event) -> {
-            Main main = new Main();
+            Window main = new Window();
         });
+    }
+
+    public void scoreBoard() {
+        JLabel score = new JLabel("Score: ");
+        Font myFont = new Font("Ariel", Font.ITALIC, 20);
+        score.setFont(myFont);
+        score.setBounds(1250, 25, 100, 100);
+        this.add(score);
+    }
+
+    public void addPoint() {
+        JLabel points = new JLabel(String.valueOf(this.score.getPoints()));
+        Font myFont = new Font("Ariel", Font.ITALIC, 20);
+        points.setFont(myFont);
+        points.setBounds(1320, 25, 50, 100);
+        this.add(points);
+    }
+
+    public void delete() {
+        JLabel delete = new JLabel("  ");
+        Font myFont = new Font("Ariel", Font.ITALIC, 20);
+        delete.setFont(myFont);
+        delete.setBounds(1320, 25, 100, 100);
+        this.add(delete);
+    }
+
+    public void win() {
+        JLabel win = new JLabel("You win!!");
+        Font myFont = new Font("Ariel", Font.ITALIC, 20);
+        win.setFont(myFont);
+        win.setBounds(100, 600, 1200, 200);
+        this.add(win);
+        this.setBackground(Color.WHITE);
+        this.setBounds(0, 0, Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
     }
 
     public void paintComponent(Graphics graphics) {

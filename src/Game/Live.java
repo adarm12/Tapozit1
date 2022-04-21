@@ -36,13 +36,13 @@ public class Live extends ImageIcon {
 
     public void paintComponent(Graphics graphics) {
         graphics.drawImage(lives.get(0).getImage(),
-                Main.WINDOW_WEIGHT - Live.LIVE_WIDTH - Live.LIVE_MARGIN,
+                Window.WINDOW_WIDTH - Live.LIVE_WIDTH - Live.LIVE_MARGIN,
                 Live.LIVE_Y, Live.LIVE_WIDTH, Live.LIVE_HEIGHT, null);
         graphics.drawImage(lives.get(1).getImage(),
-                Main.WINDOW_WEIGHT - (Live.LIVE_WIDTH * 2) - Live.LIVE_MARGIN,
+                Window.WINDOW_WIDTH - (Live.LIVE_WIDTH * 2) - Live.LIVE_MARGIN,
                 Live.LIVE_Y, Live.LIVE_WIDTH, Live.LIVE_HEIGHT, null);
         graphics.drawImage(lives.get(2).getImage(),
-                Main.WINDOW_WEIGHT - (Live.LIVE_WIDTH * 3) - Live.LIVE_MARGIN,
+                Window.WINDOW_WIDTH - (Live.LIVE_WIDTH * 3) - Live.LIVE_MARGIN,
                 Live.LIVE_Y, Live.LIVE_WIDTH, Live.LIVE_HEIGHT, null);
     }
 }

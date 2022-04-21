@@ -35,13 +35,13 @@ public class Player {
 
     public Player() {
 
-        this.leftLeg = new Rect(Main.WINDOW_WEIGHT / 2,
-                Main.WINDOW_HEIGHT - MARGIN_BOTTOM,
+        this.leftLeg = new Rect(Window.WINDOW_WIDTH / 2,
+                Window.WINDOW_HEIGHT - MARGIN_BOTTOM,
                 WEIGHT_LEG, HEIGHT_LEG,
                 new Color(255, 204, 153, 211));
 
-        this.rightLeg = new Rect(Main.WINDOW_WEIGHT / 2 + this.leftLeg.getWidth() + MARGIN_LEG,
-                Main.WINDOW_HEIGHT - MARGIN_BOTTOM,
+        this.rightLeg = new Rect(Window.WINDOW_WIDTH / 2 + this.leftLeg.getWidth() + MARGIN_LEG,
+                Window.WINDOW_HEIGHT - MARGIN_BOTTOM,
                 WEIGHT_LEG, HEIGHT_LEG,
                 new Color(255, 204, 153, 211));
 
